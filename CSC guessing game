@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class GuessingGame {
+  public static void main(String[] arg) {
+
+    Scanner input = new Scanner(System.in);
+
+    int secretNumber = 7;
+
+    System.out.println("Welcome to the guessing game!");
+    System.out.println("Guess a number between 1 and 10.");
+
+    System.out.print("enter your guess: ");
+    String userInput = input.nextLine();
+
+    int guess = Integer.parseInt(userInput);
+
+    int difference = secretNumber - guess;
+
+    if (guess == secretNumber) {
+        System.out.println("Congradulations! You guessed correctly!");
+} else {
+    System.out.println("Wrong Guess!");
+    System.out.println("The diffference is: " + Math.abs(difference));
+    System.out.println("the Secret Number was: " + secretNumber
