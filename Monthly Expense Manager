@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class MonthlyBudget {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        String name;
+        double monthlyIncome;
+        double transportation;
+        double entertainment;
+        double schoolExpenses;
+        double savings;
+        double clothing;
+        double eatingOut;
+
+        char currency = '$';
+        boolean hasBudget = true;
+
+        System.out.print("Enter your name: ");
+        name = input.nextLine();
+
+        System.out.print("Enter your monthly income: ");
+        monthlyIncome = input.nextDouble();
+
+        System.out.print("Enter your transportation expenses: ");
+        transportation = input.nextDouble();
+
+        System.out.print("Enter your entertainment expenses: ");
+        entertainment = input.nextDouble();
+
+        System.out.print("Enter your school expenses: ");
+        schoolExpenses = input.nextDouble();
+
+        System.out.print("Enter your savings: ");
+        savings = input.nextDouble();
+
+        System.out.print("Enter your clothing expenses: ");
+        clothing = input.nextDouble();
+
+        System.out.print("Enter your eating out expenses: ");
+        eatingOut = input.nextDouble();
+
+        double totalExpenses = rent + groceries + transportation + phone
+                + internet + entertainment + schoolExpenses + savings
+                + clothing + eatingOut;
+
+        double moneyRemaining = monthlyIncome - totalExpenses;
+
+        double weeklyExpenses = totalExpenses / 4.0;
+
+        int roundedIncome = (int) monthlyIncome;
+
+        System.out.println("\nMONTHLY EXPENSE REPORT");
+        System.out.println("\nName:\t" + name);
+        System.out.println("Income:\t" + currency + monthlyIncome);
+
+        System.out.println("\nExpenses");
+        System.out.println("Transportation:\t" + currency + transportation);
+        System.out.println("Entertainment:\t" + currency + entertainment);
+        System.out.println("School:\t\t" + currency + schoolExpenses);
+        System.out.println("Savings:\t" + currency + savings);
+        System.out.println("Clothing:\t" + currency + clothing);
+        System.out.println("Eating Out:\t" + currency + eatingOut);
+
+        System.out.println("\nTotal Expenses:\t\t" + currency + totalExpenses);
+        System.out.println("Money Remaining:\t" + currency + moneyRemaining);
+        System.out.println("Weekly Expense Estimate:\t" + currency + weeklyExpenses);
+
+        System.out.println("\nBudget Created:\t" + hasBudget);
+        System.out.println("Income as whole number:\t" + roundedIncome);
+
+        input.close();
+    }
+}
