@@ -1,0 +1,87 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class HangmanGame {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+
+        String[] words = {"BRAVE", "COMPUTER", "TRIDENT", "ORANGE", "GAMBLING"};
+
+        int wordNumber = random.nextInt(words.length);
+        String secretWord = words[wordNumber];
+
+        String hiddenWord = "";
+
+        for (int i = 0; i < secretWord.length(); i++) {
+            hiddenWord += "_";
+        }
+
+        int incorrectGuesses = 0;
+        int maxAttempts = 6;
+        boolean gameWon = false;
+
+        System.out.println("===== HANGMAN GAME =====");
+
+        while (incorrectGuesses < maxAttempts && !gameWon) {
+
+            System.out.println("\nWord: " + hiddenWord);
+
+            System.out.printf("Incorrect guesses: %d%n", incorrectGuesses);
+            System.out.printf("Remaining attempts: %d%n",
+                    maxAttempts - incorrectGuesses);
+
+            System.out.print("Guess a letter: ");
+            String guess = input.nextLine().toUpperCase();
+
+            if (guess.length() != 1) {
+                System.out.println("Please enter only one letter.");
+                continue;
+            }
+
+            char guessedLetter = guess.charAt(0);
+
+            boolean correctGuess = false;
+
+            for (int i = 0; i < secretWord.length(); i++) {
+
+                if (secretWord.charAt(i) == guessedLetter) {
+                    hiddenWord = hiddenWord.substring(0, i)
+                            + guessedLetter
+                            + hiddenWord.substring(i + 1);
+
+                    correctGuess = true;
+                }
+            }
+
+            if (correctGuess) {
+                System.out.println("Correct!");
+            } else {
+                incorrectGuesses++;
+                System.out.println("Incorrect!");
+            }
+
+            if (hiddenWord.equals(secretWord)) {
+                gameWon = true;
+            }
+        }
+
+        System.out.println("\n========================");
+
+        if (gameWon) {
+            System.out.println("You won!");
+            System.out.println("The word was: " + secretWord);
+        } else {
+            System.out.println("You lost!");
+            System.out.println("The word was: " + secretWord);
+        }
+
+              double score = Math.max(0, 100 - (incorrectGuesses * 10));
+
+        System.out.printf("Your score: %.1f%n", score);
+
+        input.close();
+    }
+}
