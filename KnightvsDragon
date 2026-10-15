@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class KnightVsDragon {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        Random random = new Random();
+
+        int knightHealth = 30;
+        int dragonHealth = 30;
+        int turn = 1;
+
+        System.out.println("================================");
+        System.out.println("      KNIGHT VS DRAGON");
+        System.out.println("================================");
+
+        System.out.println("\n=== BATTLEFIELD ===");
+
+        for (int row = 1; row <= 3; row++) {
+            for (int column = 1; column <= 3; column++) {
+                System.out.print("[ * ] ");
+            }
+            System.out.println();
+        }
+
+        while (knightHealth > 0 && dragonHealth > 0) {
+
+            System.out.println("\n========== TURN " + turn + " ==========");
+            System.out.println("Knight Health: " + knightHealth);
+            System.out.println("Dragon Health: " + dragonHealth);
+
+            System.out.println("\nKnight's turn!");
+            System.out.println("Press Enter to roll the dice.");
+            input.nextLine();
+
+            int knightRoll = random.nextInt(10) + 1;
+
+            System.out.println("The Knight rolled: " + knightRoll);
+
+            dragonHealth = dragonHealth - knightRoll;
+
+            if (dragonHealth <= 0) {
+                dragonHealth = 0;
+                System.out.println("The Knight defeats the Dragon!");
+            } else {
+                System.out.println(
+                    "The Dragon has " + dragonHealth + " health remaining."
+                );
+            }
+
+            if (dragonHealth <= 0) {
+                break;
+            }
+
+            System.out.println("\nDragon's turn!");
+            System.out.println("Press Enter to roll the dice.");
+            input.nextLine();
+
+            int dragonRoll = random.nextInt(10) + 1;
+
+            System.out.println("The Dragon rolled: " + dragonRoll);
+
+            knightHealth = knightHealth - dragonRoll;
+
+            if (knightHealth <= 0) {
+                knightHealth = 0;
+                System.out.println("The Dragon defeats the Knight!");
+            } else {
+                System.out.println(
+                    "The Knight has " + knightHealth + " health remaining."
+                );
+            }
+
+            turn++;
+        }
+
+        System.out.println("\n================================");
+        System.out.println("           GAME OVER");
+        System.out.println("================================");
+
+        if (knightHealth <= 0) {
+            System.out.println("The Dragon WINS!");
+        } else {
+            System.out.println("The Knight WINS!");
+        }
+
+        System.out.println("Final Knight Health: " + knightHealth);
+        System.out.println("Final Dragon Health: " + dragonHealth);
+
+        input.close();
+    }
+}
